@@ -9,11 +9,13 @@
 //    <div class="tab">topic here</div>
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
-.then((res) => {
+
+.then(res => {
     res.data.topics.forEach(item => {
         document.querySelector('.topics').append(createTab(item));
     });
 })
+
 .catch((err) => {
     console.log('there was an error :(', err);
 })
@@ -21,7 +23,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
 function createTab(data) {
     const tab = document.createElement('div');
     tab.classList.add('tab');
-    tab.textContent = data;
+    tab.textContent = `${data}`;
 
     return tab;
 }
