@@ -7,7 +7,7 @@
     6. Have fun!
 */
 
-/*HTML:*/ 
+/*HTML:
   <div class="carousel">
     <div class="left-button"> < </div>
     <img src="./assets/carousel/mountains.jpeg" />
@@ -15,5 +15,41 @@
     <img src="./assets/carousel/trees.jpeg" />
     <img src="./assets/carousel/turntable.jpeg" />
     <div class="right-button"> > </div>
-  </div>
+  </div>*/ 
 
+  let imgList = [
+    '/assets/carousel/computer.jpeg',
+    '/assets/carousel/mountains.jpeg',
+    '/assets/carousel/trees.jpeg',
+    '/assets/carousel/turntable.jpeg'
+  ]
+  
+  function carousel(imgArr){
+    const caroDiv = document.createElement('div'),
+      leftBtn = document.createElement('div'),
+      rightBtn = document.createElement('div');
+  
+    caroDiv.classList.add('carousel');
+    leftBtn.classList.add('left-button');
+    rightBtn.classList.add('right-button');
+  
+    leftBtn.addEventListener('click', () => {
+      console.log('Left btn click');
+    })
+    rightBtn.addEventListener('click', () => {
+      console.log('Right btn click');
+    })
+  
+    caroDiv.append(leftBtn);
+    imgArr.forEach(element => {
+      const img = document.createElement('img');
+      img.src = element;
+      caroDiv.append(img);
+    });
+    caroDiv.append(rightBtn);
+  
+    return caroDiv;
+  }
+  
+  const carouselContainer = document.querySelector('.carousel-container');
+  carouselContainer.append(carousel(imgList)); 
