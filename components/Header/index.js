@@ -10,6 +10,8 @@
 // And add it to the DOM in the .header-container component
 
 function Header() {
+
+    
     const topDiv = document.createElement('div'),
     date = document.createElement('span'),
     h1 = document.createElement('h1'),

@@ -1,6 +1,8 @@
 .carousel {
-  .width-100();
+  
   .flex(center, center);
+  display:flex;
+  flex-direction:column;
   height: 500px;
   position: relative;
   overflow: hidden;
@@ -38,4 +40,8 @@
     .width-100();
     display: none;
   }
-}
+
+  .active-image {
+    display: block;
+  }
+} 
