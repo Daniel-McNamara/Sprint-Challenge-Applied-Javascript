@@ -17,39 +17,52 @@
     <div class="right-button"> > </div>
   </div>*/ 
 
-  let imgList = [
-    '/assets/carousel/computer.jpeg',
-    '/assets/carousel/mountains.jpeg',
-    '/assets/carousel/trees.jpeg',
-    '/assets/carousel/turntable.jpeg'
-  ]
-  
-  function carousel(imgArr){
-    const caroDiv = document.createElement('div'),
-      leftBtn = document.createElement('div'),
-      rightBtn = document.createElement('div');
-  
-    caroDiv.classList.add('carousel');
-    leftBtn.classList.add('left-button');
-    rightBtn.classList.add('right-button');
-  
-    leftBtn.addEventListener('click', () => {
-      console.log('Left btn click');
-    })
-    rightBtn.addEventListener('click', () => {
-      console.log('Right btn click');
-    })
-  
-    caroDiv.append(leftBtn);
-    imgArr.forEach(element => {
-      const img = document.createElement('img');
-      img.src = element;
-      caroDiv.append(img);
-    });
-    caroDiv.append(rightBtn);
-  
-    return caroDiv;
-  }
-  
-  const carouselContainer = document.querySelector('.carousel-container');
-  carouselContainer.append(carousel(imgList)); 
+  function Carousel() {
+    const carousel = document.createElement('div');
+    const leftButton = document.createElement('div');
+    const mountainImage = document.createElement('img');
+    const treeImage = document.createElement('img');
+    const computerImage = document.createElement('img');
+    const turntableImage = document.createElement('img');
+    const rightButton = document.createElement('div');
+    carousel.classList.add("carousel");
+    leftButton.classList.add("left-button");
+    rightButton.classList.add("right-button");
+    mountainImage.classList.add("active-image");
+    mountainImage.src = "../assets/carousel/mountains.jpeg";
+    computerImage.src = "../assets/carousel/computer.jpeg";
+    treeImage.src = "../assets/carousel/trees.jpeg";
+    turntableImage.src = "../assets/carousel/turntable.jpeg";
+    leftButton.textContent = " < ";
+    rightButton.textContent = " > ";
+    function imgSlider() {
+      let index = 0;
+      let imgArr = [mountainImage, computerImage, treeImage, turntableImage];
+      return function() {
+        if (index < 3){
+          index = index + 1;
+          imgArr[index-1].classList.remove("active-image");
+          imgArr[index].classList.add("active-image");
+          console.log(index);
+          return imgArr[index];
+        } else {
+          index = 0;
+          imgArr[index].classList.add("active-image");
+          imgArr[3].classList.remove("active-image");
+          console.log(index);
+          return imgArr[index];
+        }
+      }
+    };
+    leftButton.addEventListener('click', imgSlider());
+    rightButton.addEventListener('click', imgSlider());
+    carousel.append(leftButton);
+    carousel.append(mountainImage);
+    carousel.append(computerImage);
+    carousel.append(treeImage);
+    carousel.append(turntableImage);
+    carousel.append(rightButton);
+    return carousel;
+  };
+  const carouselParent = document.querySelector('.carousel-container');
+  carouselParent.append(Carousel());
